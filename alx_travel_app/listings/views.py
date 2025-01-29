@@ -4,7 +4,7 @@ from .serializers import ListingSerializer, BookingSerializer, ReviewSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class ListingViewSet(viewsets.ModelViewSet):
-    queryset = Listing.objects.all()
+    queryset = Listing.objects.prefetch_related('reviews')
     serializer_class = ListingSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]  # Only authenticated users can create/update listings
 
